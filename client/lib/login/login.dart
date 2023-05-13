@@ -26,7 +26,7 @@ class _InpleLoginState extends State<InpleLogin> {
           ));
         },
         theme: LoginTheme(
-          primaryColor: Colors.teal,
+          primaryColor: Color.fromARGB(255, 100, 187, 177),
           // space between login card and login buttons
         ),
         onRecoverPassword: (_) => Future(() => null));
