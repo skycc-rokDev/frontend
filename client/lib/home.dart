@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:stacked_card_carousel/stacked_card_carousel.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'login/login.dart';
 import 'card_info.dart';
@@ -14,72 +15,46 @@ class Inple extends StatefulWidget {
 }
 
 class _InpleState extends State<Inple> {
+  Widget My_Card(String image, String cardId, double screenw) {
+    return Card(
+      elevation: 4.0,
+      child: Padding(
+        padding: const EdgeInsets.all(1.0),
+        child: InkWell(
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => cardinfo(cardId: cardId)),
+            );
+          },
+          child: Column(
+            children: <Widget>[
+              Container(
+                child: Image.asset("assets/image/$image", width: screenw * 0.9),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final screenw = MediaQuery.of(context).size.width;
     final screenh = MediaQuery.of(context).size.height;
     final List<Widget> fancyCards = <Widget>[
-      Card(
-        elevation: 4.0,
-        child: Padding(
-          padding: const EdgeInsets.all(1.0),
-          child: Column(
-            children: <Widget>[
-              Container(
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(8.0),
-                ),
-                child: Image.asset(
-                  "assets/image/1f.png",
-                  width: screenw * 0.9,
-                ),
-              ),
-            ],
-          ),
-        ),
-      ),
-      Card(
-        elevation: 4.0,
-        child: Padding(
-          padding: const EdgeInsets.all(1.0),
-          child: InkWell(
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => cardinfo()),
-              );
-            },
-            child: Column(
-              children: <Widget>[
-                Container(
-                  child:
-                      Image.asset("assets/image/2f.png", width: screenw * 0.9),
-                ),
-              ],
-            ),
-          ),
-        ),
-      ),
-      Card(
-        elevation: 4.0,
-        child: Padding(
-          padding: const EdgeInsets.all(1.0),
-          child: Column(
-            children: <Widget>[
-              Container(
-                child: Image.asset("assets/image/1f.png", width: screenw * 0.9),
-              ),
-            ],
-          ),
-        ),
-      ),
+      My_Card("1f.png", "1", screenw),
+      My_Card("2f.png", "2", screenw),
+      My_Card("1f.png", "3", screenw),
+      My_Card("2f.png", "4", screenw),
     ];
     return Scaffold(
       appBar: AppBar(
         elevation: 0.0,
         backgroundColor: Colors.white,
         title: Text(widget.title,
-            style: TextStyle(
+            style: const TextStyle(
                 color: Color.fromARGB(255, 100, 187, 177),
                 fontSize: 40,
                 fontWeight: FontWeight.w900)),
@@ -102,6 +77,7 @@ class _InpleState extends State<Inple> {
           ),
         ],
       ),
+
       body: StackedCardCarousel(
         items: fancyCards,
         initialOffset: screenh * 0.2,

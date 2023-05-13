@@ -7,6 +7,8 @@ import 'package:flutter_animated_button/flutter_animated_button.dart';
 import 'plus_memo.dart';
 
 class cardinfo extends StatelessWidget {
+  cardinfo({Key? key, required this.cardId}) : super(key: key);
+  final String cardId;
   final con = GestureFlipCardController();
   @override
   Widget build(BuildContext context) {
