@@ -46,8 +46,8 @@ class _InpleState extends State<Inple> {
     final List<Widget> fancyCards = <Widget>[
       My_Card("1f.png", "1", screenw),
       My_Card("2f.png", "2", screenw),
-      My_Card("1f.png", "3", screenw),
-      My_Card("2f.png", "4", screenw),
+      My_Card("3f.png", "3", screenw),
+      My_Card("4f.png", "4", screenw),
     ];
     return Scaffold(
       appBar: AppBar(

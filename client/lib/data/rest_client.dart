@@ -14,6 +14,9 @@ abstract class RestClient {
 
   @POST('/auth/login')
   Future<Data> login({@Body() required jsondata});
+
+  @GET('/card/list')
+  Future<List<Cards>> getCardList({@Header('token') required token});
 }
 
 @JsonSerializable()
@@ -33,73 +36,44 @@ class Data {
 }
 
 @JsonSerializable()
-class User {
-  User({
-    required this.id,
+class Card {
+  Card({
+    required this.uuid,
     required this.email,
+    required this.email2,
+    required this.company,
     required this.name,
-    required this.age,
-    required this.gender,
+    required this.phone,
+    required this.site,
     required this.address,
-    required this.picture,
-    required this.regDate,
-    required this.birth,
-    required this.familyRole,
+    required this.role,
   });
-  int? id;
+
+  String uuid;
   String email;
-  String? name;
-  int? age;
-  String? gender;
-  String? address;
-  String? picture;
-  String? regDate;
-  String? birth;
-  String? familyRole;
-  String? emotion;
+  String email2;
+  String company;
+  String name;
+  String phone;
+  String site;
+  String address;
+  String role;
 
   // factory with null safety
-  factory User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);
-  Map<String, dynamic> toJson() => _$UserToJson(this);
+  factory Card.fromJson(Map<String, dynamic> json) => _$CardFromJson(json);
+  Map<String, dynamic> toJson() => _$CardToJson(this);
 }
 
 @JsonSerializable()
-class Family {
-  Family({
-    required this.id,
-    required this.name,
-    required this.code,
-    required this.regDate,
+class Cards {
+  Cards({
+    required this.message,
+    required this.data,
   });
 
-  int id;
-  String name;
-  String code;
-  String regDate;
+  String message;
+  List<Card> data;
 
-  factory Family.fromJson(Map<String, dynamic> json) => _$FamilyFromJson(json);
-  Map<String, dynamic> toJson() => _$FamilyToJson(this);
-}
-
-@JsonSerializable()
-class FamilyInfo {
-  FamilyInfo({
-    required this.id,
-    required this.name,
-    required this.code,
-    required this.regDate,
-    required this.point,
-    required this.users,
-  });
-
-  int id;
-  String name;
-  String code;
-  String regDate;
-  int point;
-  List<User> users;
-
-  factory FamilyInfo.fromJson(Map<String, dynamic> json) =>
-      _$FamilyInfoFromJson(json);
-  Map<String, dynamic> toJson() => _$FamilyInfoToJson(this);
+  factory Cards.fromJson(Map<String, dynamic> json) => _$CardsFromJson(json);
+  Map<String, dynamic> toJson() => _$CardsToJson(this);
 }

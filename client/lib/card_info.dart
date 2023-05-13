@@ -54,7 +54,7 @@ class cardinfo extends StatelessWidget {
                   width: screenw * 0.8,
                   height: 200,
                   child: Image.asset(
-                    "assets/image/2f.png",
+                    "assets/image/${cardId}f.png",
                     fit: BoxFit.contain,
                   ),
                 ),
@@ -64,7 +64,7 @@ class cardinfo extends StatelessWidget {
                   width: screenw * 0.8,
                   height: 200,
                   child: Image.asset(
-                    "assets/image/2b.png",
+                    "assets/image/${cardId}b.png",
                     fit: BoxFit.contain,
                   ),
                 ),

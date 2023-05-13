@@ -18,66 +18,40 @@ Map<String, dynamic> _$DataToJson(Data instance) => <String, dynamic>{
       'token': instance.token,
     };
 
-User _$UserFromJson(Map<String, dynamic> json) => User(
-      id: json['id'] as int?,
+Card _$CardFromJson(Map<String, dynamic> json) => Card(
+      uuid: json['uuid'] as String,
       email: json['email'] as String,
-      name: json['name'] as String?,
-      age: json['age'] as int?,
-      gender: json['gender'] as String?,
-      address: json['address'] as String?,
-      picture: json['picture'] as String?,
-      regDate: json['regDate'] as String?,
-      birth: json['birth'] as String?,
-      familyRole: json['familyRole'] as String?,
-    )..emotion = json['emotion'] as String?;
-
-Map<String, dynamic> _$UserToJson(User instance) => <String, dynamic>{
-      'id': instance.id,
-      'email': instance.email,
-      'name': instance.name,
-      'age': instance.age,
-      'gender': instance.gender,
-      'address': instance.address,
-      'picture': instance.picture,
-      'regDate': instance.regDate,
-      'birth': instance.birth,
-      'familyRole': instance.familyRole,
-      'emotion': instance.emotion,
-    };
-
-Family _$FamilyFromJson(Map<String, dynamic> json) => Family(
-      id: json['id'] as int,
+      email2: json['email2'] as String,
+      company: json['company'] as String,
       name: json['name'] as String,
-      code: json['code'] as String,
-      regDate: json['regDate'] as String,
+      phone: json['phone'] as String,
+      site: json['site'] as String,
+      address: json['address'] as String,
+      role: json['role'] as String,
     );
 
-Map<String, dynamic> _$FamilyToJson(Family instance) => <String, dynamic>{
-      'id': instance.id,
+Map<String, dynamic> _$CardToJson(Card instance) => <String, dynamic>{
+      'uuid': instance.uuid,
+      'email': instance.email,
+      'email2': instance.email2,
+      'company': instance.company,
       'name': instance.name,
-      'code': instance.code,
-      'regDate': instance.regDate,
+      'phone': instance.phone,
+      'site': instance.site,
+      'address': instance.address,
+      'role': instance.role,
     };
 
-FamilyInfo _$FamilyInfoFromJson(Map<String, dynamic> json) => FamilyInfo(
-      id: json['id'] as int,
-      name: json['name'] as String,
-      code: json['code'] as String,
-      regDate: json['regDate'] as String,
-      point: json['point'] as int,
-      users: (json['users'] as List<dynamic>)
-          .map((e) => User.fromJson(e as Map<String, dynamic>))
+Cards _$CardsFromJson(Map<String, dynamic> json) => Cards(
+      message: json['message'] as String,
+      data: (json['data'] as List<dynamic>)
+          .map((e) => Card.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
 
-Map<String, dynamic> _$FamilyInfoToJson(FamilyInfo instance) =>
-    <String, dynamic>{
-      'id': instance.id,
-      'name': instance.name,
-      'code': instance.code,
-      'regDate': instance.regDate,
-      'point': instance.point,
-      'users': instance.users,
+Map<String, dynamic> _$CardsToJson(Cards instance) => <String, dynamic>{
+      'message': instance.message,
+      'data': instance.data,
     };
 
 // **************************************************************************
@@ -141,6 +115,32 @@ class _RestClient implements RestClient {
             )
             .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
     final value = Data.fromJson(_result.data!);
+    return value;
+  }
+
+  @override
+  Future<List<Cards>> getCardList({required dynamic token}) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{r'token': token};
+    _headers.removeWhere((k, v) => v == null);
+    final Map<String, dynamic>? _data = null;
+    final _result =
+        await _dio.fetch<List<dynamic>>(_setStreamType<List<Cards>>(Options(
+      method: 'GET',
+      headers: _headers,
+      extra: _extra,
+    )
+            .compose(
+              _dio.options,
+              '/card/list',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    var value = _result.data!
+        .map((dynamic i) => Cards.fromJson(i as Map<String, dynamic>))
+        .toList();
     return value;
   }
 
