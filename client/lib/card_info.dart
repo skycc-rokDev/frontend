@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:stacked_card_carousel/stacked_card_carousel.dart';
 import 'package:flutter_flip_card/flutter_flip_card.dart';
 
 import 'login/login.dart';

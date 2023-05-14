@@ -22,11 +22,10 @@ void main() {
         primarySwatch: Colors.teal,
       ),
       home: hasToken
-          ? Inple(
-              title: 'Inple',
-            )
+          ? Inple()
           : InpleLogin(
               title: 'Inple',
             )));
+
   // FlutterNativeSplash.remove();
 }

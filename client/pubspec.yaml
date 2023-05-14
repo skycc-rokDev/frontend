@@ -43,6 +43,10 @@ dependencies:
     retrofit: ^4.0.1
     json_annotation: ^4.8.1
     shared_preferences: ^2.1.1
+    sliding_up_panel2: ^3.3.0+1
+    latlong2: ^0.8.1
+    flutter_map: ^4.0.0
+    nfc_manager: ^3.2.0
 
 dev_dependencies:
     flutter_test:

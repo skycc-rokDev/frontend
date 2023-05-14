@@ -87,7 +87,7 @@ class _InpleLoginState extends State<InpleLogin> {
         onSignup: _signupUser,
         onSubmitAnimationCompleted: () {
           Navigator.of(context).pushReplacement(MaterialPageRoute(
-            builder: (context) => Inple(title: widget.title),
+            builder: (context) => Inple(),
           ));
         },
         theme: LoginTheme(

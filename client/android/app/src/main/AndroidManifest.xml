@@ -2,7 +2,7 @@
     package="com.example.client">
    <application
         android:label="Inple"
-        android:name="Inple"
+        android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"
